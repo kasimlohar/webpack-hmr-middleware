@@ -41,15 +41,23 @@ describe('HMR Server Tests', () => {
   test('Handles connection errors gracefully', (done) => {
     const badClient = new WebSocket(`ws://localhost:${TEST_PORT}`);
     
-    badClient.on('open', () => {
-      badClient.terminate(); // Force an error
+    badClient.on('error', () => {
+      // Wait for cleanup to complete
+      setTimeout(() => {
+        expect(hmrServer.clients.size).toBe(1); // Only original client remains
+        done();
+      }, 100);
     });
 
-    badClient.on('error', () => {
-      expect(hmrServer.clients.size).toBe(1); // Only original client remains
-      done();
+    // Force connection termination after connection is established
+    badClient.on('open', () => {
+      try {
+        badClient.terminate();
+      } catch (err) {
+        done(err);
+      }
     });
-  });
+  }, 1000); // Add timeout of 1 second
 
   test('Maintains active client connections', () => {
     expect(hmrServer.clients.size).toBe(1);
