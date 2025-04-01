@@ -1,0 +1,34 @@
+{
+  "name": "webpack-hmr-middleware",
+  "version": "1.0.0",
+  "description": "Webpack Hot Module Replacement Middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "webpack",
+    "hmr",
+    "middleware"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "express": "^4.21.2",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasimlohar/webpack-hmr-middleware.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kasimlohar/webpack-hmr-middleware/issues"
+  },
+  "homepage": "https://github.com/kasimlohar/webpack-hmr-middleware#readme"
+}
